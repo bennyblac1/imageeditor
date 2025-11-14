@@ -1,13 +1,12 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const editImageWithPrompt = async (
   base64ImageData: string,
   mimeType: string,
   prompt: string
 ): Promise<string | null> => {
   try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const base64DataOnly = base64ImageData.split(',')[1];
     
     const response = await ai.models.generateContent({
